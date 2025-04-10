@@ -11,11 +11,14 @@
         "illuminate/support": "^10.0|^11.0"
     },
     "require-dev": {
-        "laravel/nova": "^5.0",
-        "laravel/nova-devtool": "^1.5"
+        "laravel/nova": "*",
+        "laravel/nova-devtool": "^1.6"
     },
     "repositories": [
-        { "type": "composer", "url": "https://nova.laravel.com" }
+        {
+            "type": "path",
+            "url": "../../packages/laravel/nova"
+        }
     ],
     "autoload": {
         "psr-4": {

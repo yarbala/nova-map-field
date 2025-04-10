@@ -1,0 +1,8 @@
+{
+  "resources/js/field.js": {
+    "file": "simple-map.js",
+    "name": "field",
+    "src": "resources/js/field.js",
+    "isEntry": true
+  }
+}
