@@ -1,6 +1,6 @@
 {
-    "name": "yarbala/simple-map",
-    "description": "A Laravel Nova field.",
+    "name": "yarbala/nova-map-field",
+    "description": "Laravel Nova 5 map field",
     "keywords": [
         "laravel",
         "nova"
