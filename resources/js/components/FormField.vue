@@ -18,9 +18,7 @@
                                class="w-full form-control form-input form-input-bordered"
                                :class="errorClasses"
                                v-model="field.lat"
-                               type="number"
-                               step="0.00001"
-                               novalidate
+                               type="text"
                         />
                     </div>
                 </div>
@@ -33,9 +31,7 @@
                                class="w-full form-control form-input form-input-bordered"
                                :class="errorClasses"
                                v-model="field.lng"
-                               type="number"
-                               step="0.00001"
-                               novalidate
+                               type="text"
                         />
                     </div>
                 </div>
