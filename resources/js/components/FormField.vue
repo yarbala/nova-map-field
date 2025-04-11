@@ -20,6 +20,7 @@
                                v-model="field.lat"
                                type="number"
                                step="0.00001"
+                               novalidate
                         />
                     </div>
                 </div>
@@ -34,6 +35,7 @@
                                v-model="field.lng"
                                type="number"
                                step="0.00001"
+                               novalidate
                         />
                     </div>
                 </div>
