@@ -52,6 +52,28 @@
 import {FormField, HandlesValidationErrors} from 'laravel-nova'
 import GoogleMapService from "../services/GoogleMapService";
 
+function getLat(value) {
+    if(isPoint(value)) {
+        return value.coordinates[1];
+    }
+
+    const v = JSON.parse(value);
+    return v.lat;
+}
+
+function getLng(value) {
+    if(isPoint(value)) {
+        return value.coordinates[0];
+    }
+
+    const v = JSON.parse(value);
+    return v.lng;
+}
+
+function isPoint(value) {
+    return Object.keys(value).indexOf('coordinates') >= 0;
+}
+
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
@@ -70,10 +92,11 @@ export default {
         return data;
     },
     mounted: async function () {
+        console.log('[SimpleMap][Mounted] Init Value: ', this.value);
+
         if(this.value) {
-            const v = JSON.parse(this.value);
-            this.field.lat = v.lat;
-            this.field.lng = v.lng;
+            this.field.lat = getLat(this.value);
+            this.field.lng = getLng(this.value);
         }
 
         console.log('[SimpleMap][Mounted] Map: ' + this.map);
@@ -87,7 +110,9 @@ export default {
 
         console.log('[SimpleMap][Mounted] Element (#' + this.map + '): ', element);
 
-        const {lat, lng} = this.value ? JSON.parse(this.value) : this.field;
+        const lat = this.value ? getLat(this.value) : this.field.lat;
+        const lng = this.value ? getLng(this.value) : this.field.lng;
+
         console.log('[SimpleMap][Mounted] Initial coordinates:', {lat, lng});
 
         if(this.map === ('google-' + this._.uid)) {
@@ -100,7 +125,12 @@ export default {
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-            formData.append(this.fieldAttribute, this.value || '')
+            console.log('[SimpleMap][Fill] Field: ', this.value);
+
+            formData.append(this.fieldAttribute, JSON.stringify({
+                lat: this.field.lat,
+                lng: this.field.lng,
+            }))
         },
     },
     watch: {

@@ -55,12 +55,8 @@ export default class GoogleMapService {
     }
 
     updateCurrentMarker(lat, lng) {
-        this.currentPosition = new google.maps.LatLng(lat, lng);
-        if (this.currentMarker) {
-            this.currentMarker.position = this.currentPosition;
-        }
-
-        this.context.value = JSON.stringify({lat: lat, lng: lng});
+        this.updateCurrentMarkerLng(lng);
+        this.updateCurrentMarkerLat(lat);
     }
 
     updateCurrentMarkerLng(lng) {
@@ -73,6 +69,7 @@ export default class GoogleMapService {
         }
 
         this.context.value = {...this.context.value, ...{lng: lng}};
+        this.context.field.lng = lng;
     }
 
     updateCurrentMarkerLat(lat) {
@@ -85,5 +82,6 @@ export default class GoogleMapService {
         }
 
         this.context.value = {...this.context.value, ...{lat: lat}};
+        this.context.field.lat = lat;
     }
 }
