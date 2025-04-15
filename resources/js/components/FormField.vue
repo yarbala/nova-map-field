@@ -19,6 +19,7 @@
                                :class="errorClasses"
                                v-model="field.lat"
                                type="text"
+                               disabled
                         />
                     </div>
                 </div>
@@ -32,6 +33,7 @@
                                :class="errorClasses"
                                v-model="field.lng"
                                type="text"
+                               disabled
                         />
                     </div>
                 </div>
