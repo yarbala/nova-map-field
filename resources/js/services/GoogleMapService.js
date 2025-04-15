@@ -33,10 +33,16 @@ export default class GoogleMapService {
             const map = new google.maps.Map(element, options);
             console.log('[SimpleMap][GoogleMapService][createMap] Map initialized successfully');
 
-
             this.currentMarker = new AdvancedMarkerElement({
                 position: this.currentLatLng,
-                map: map
+                map: map,
+                gmpDraggable: true,
+            });
+
+            this.currentMarker.addListener("dragend", (event) => {
+                const position = this.currentMarker.position;
+
+                this.updateCurrentMarker(position.lat, position.lng);
             });
 
             console.log('[SimpleMap][GoogleMapService][createMap] Marker placed at:', this.currentLatLng);
