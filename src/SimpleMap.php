@@ -55,7 +55,7 @@ class SimpleMap extends Field
     {
         if (is_string($value) && $this->pointColumn && $attribute === $this->pointColumn) {
             $point = json_decode($value);
-            $value = new Point($point->lat, $point->lng, Srid::WGS84->value);
+            $value = new Point($point->lat, $point->lng, Srid::WEB_MERCATOR->value);
         }
 
         parent::fillModelWithData($model, $value, $attribute);
