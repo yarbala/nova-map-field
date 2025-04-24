@@ -16,13 +16,13 @@ class FieldServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/simple-map.php' => base_path('config/simple-map.php'),
+                __DIR__ . '/../config/simple-map.php' => base_path('config/simple-map.php'),
             ], 'simple-map-config');
         }
 
         Nova::serving(function (ServingNova $event) {
             Nova::script('simple-map-google', $this->googleMapsSource());
-            Nova::mix('simple-map', __DIR__.'/../dist/mix-manifest.json');
+            Nova::mix('simple-map', __DIR__ . '/../dist/mix-manifest.json');
         });
     }
 
@@ -31,7 +31,7 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/simple-map.php', 'simple-map');
+        $this->mergeConfigFrom(__DIR__ . '/../config/simple-map.php', 'simple-map');
     }
 
     protected function googleMapsSource(): string
